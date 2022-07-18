@@ -17,6 +17,14 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
+    
+    - name: Set up OpenXM
+      run:
+        sudo apt-get install -y build-essential m4 bison
+        sudo apt-get install -y libx11-dev libxt-dev libxaw7-dev
+        curl  -O "http://www.math.sci.kobe-u.ac.jp/pub/OpenXM/Head/openxm-head.tar.gz"
+        tar xf openxm-head.tar.gz
+        ls
 
     - name: Test
       run: go test -v ./...
