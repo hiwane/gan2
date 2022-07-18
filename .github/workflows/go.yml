@@ -20,12 +20,18 @@ jobs:
     
     - name: Set up OpenXM
       run: |
-        sudo apt-get install -y build-essential m4 bison
-        sudo apt-get install -y libx11-dev libxt-dev libxaw7-dev
-        curl  -O "http://www.math.sci.kobe-u.ac.jp/pub/OpenXM/Head/openxm-head.tar.gz"
-        tar xf openxm-head.tar.gz
-        (cd OpenXM/src; make install)
-        (cd OpenXM/rc; make install)
+        sudo apt -y update
+        sudo apt install wget
+        sudo wget -O /etc/apt/sources.list.d/fe-deb2.list http://www.math.kobe-u.ac.jp/deb2/fe-deb2.list
+        sudo wget -O /usr/share/keyrings/fe-deb2-archive-keyring.gpg  http://www.math.kobe-u.ac.jp/deb2/fe-deb2-archive-keyring.gpg
+        sudo apt -y update
+        sudo apt -y install openxm
+        # sudo apt-get install -y build-essential m4 bison
+        # sudo apt-get install -y libx11-dev libxt-dev libxaw7-dev
+        # curl  -O "http://www.math.sci.kobe-u.ac.jp/pub/OpenXM/Head/openxm-head.tar.gz"
+        # tar xf openxm-head.tar.gz
+        # (cd OpenXM/src; make install)
+        # (cd OpenXM/rc; make install)
         while :; do ox -ox ox_asir -control 1234 -data 4321; done &
         
     - name: connect
