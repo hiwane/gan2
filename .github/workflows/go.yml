@@ -25,6 +25,7 @@ jobs:
         sudo wget -O /etc/apt/sources.list.d/fe-deb2.list http://www.math.kobe-u.ac.jp/deb2/fe-deb2.list
         sudo wget -O /usr/share/keyrings/fe-deb2-archive-keyring.gpg  http://www.math.kobe-u.ac.jp/deb2/fe-deb2-archive-keyring.gpg
         sudo apt-get -y update
+        touch /tmp/i-agree-with-asir-license
         sudo apt-get -y install openxm
         # sudo apt-get install -y build-essential m4 bison
         # sudo apt-get install -y libx11-dev libxt-dev libxaw7-dev
