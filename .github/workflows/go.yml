@@ -38,13 +38,15 @@ jobs:
         which ox
         while :; do ox -ox ox_asir -control 1234 -data 4321; done &
         
-    - name: connect
-      run:
-        pwd
-        echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q 
-
     - name: Test
       run: go test -v ./...
 
     - name: Lint
       run: go vet -v ./...
+
+    - name: connect
+      run: |
+        pwd
+        echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q 
+
+
