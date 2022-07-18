@@ -33,13 +33,14 @@ jobs:
         # tar xf openxm-head.tar.gz
         # (cd OpenXM/src; make install)
         # (cd OpenXM/rc; make install)
-        ls /usr/local/bin
+        echo "============================== OKK"
         which asir
         which ox
         while :; do ox -ox ox_asir -control 1234 -data 4321; done &
         
     - name: connect
       run:
+        pwd
         echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q 
 
     - name: Test
