@@ -9,7 +9,7 @@ func TestNeqQE(t *testing.T) {
 	g := NewGANRAC()
 	connc, connd := testConnectOx(g)
 	if g.ox == nil {
-		fmt.Printf("skip TestNeqQE... (no ox)\n")
+		t.Error("skip TestNeqQE... (no ox)\n")
 		return
 	}
 	defer connc.Close()
