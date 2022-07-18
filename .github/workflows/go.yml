@@ -20,8 +20,8 @@ jobs:
     - name: Cache openxm
       id: openxm_cache_id
       uses: actions/cache@v2
-        with:
-          key: 1
+      with:
+        key: 1
 
 
     - name: Set up OpenXM
