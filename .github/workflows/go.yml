@@ -17,15 +17,7 @@ jobs:
       with:
         go-version: ${{ matrix.go }}
 
-    - name: Cache openxm
-      id: openxm_cache_id
-      uses: actions/cache@v2
-      with:
-        key: 1
-
-
     - name: Set up OpenXM
-      if: ${{ steps.openxm_cache_id.outputs.cache-hit == 'false' }}
       run: |
         sudo apt-get -y install wget
         sudo wget -O /etc/apt/sources.list.d/fe-deb2.list http://www.math.kobe-u.ac.jp/deb2/fe-deb2.list
@@ -45,7 +37,7 @@ jobs:
         while :; do ox -ox ox_asir -control 1234 -data 4321; done &
 
     - name: Test
-      run: go test -v .
+      run: go test -v ./...
 
     - name: Lint
       run: go vet -v ./...
@@ -53,6 +45,6 @@ jobs:
     - name: connect
       run: |
         pwd
-        echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q 
+        echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q
 
 
