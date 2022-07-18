@@ -24,7 +24,13 @@ jobs:
         sudo apt-get install -y libx11-dev libxt-dev libxaw7-dev
         curl  -O "http://www.math.sci.kobe-u.ac.jp/pub/OpenXM/Head/openxm-head.tar.gz"
         tar xf openxm-head.tar.gz
-        ls
+        (cd OpenXM/src; make install)
+        (cd OpenXM/rc; make install)
+        while :; do ox -ox ox_asir -control 1234 -data 4321; done &
+        
+    - name: connect
+      run:
+        echo "print(\"hoge\"); quit();" | ganrac -ox -control :1234 -data :4321 -q 
 
     - name: Test
       run: go test -v ./...
