@@ -1,7 +1,6 @@
 package ganrac
 
 import (
-	"fmt"
 	"testing"
 )
 
