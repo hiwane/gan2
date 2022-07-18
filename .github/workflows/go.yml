@@ -17,6 +17,7 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
+
     
     - name: Set up OpenXM
       run: |
@@ -38,7 +39,7 @@ jobs:
         
     - name: connect
       run:
-        echo "print(\"hoge\"); quit();" | ganrac -ox -control :1234 -data :4321 -q 
+        echo "print(\"hoge\"); quit();" | go run cmd/ganrac/main.go -ox -control :1234 -data :4321 -q 
 
     - name: Test
       run: go test -v ./...
